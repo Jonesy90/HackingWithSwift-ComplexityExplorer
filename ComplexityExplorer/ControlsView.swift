@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ControlsView: View {
+    @Binding var inputSize: Double
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            LabeledContent {
+                Slider(value: $inputSize, in: 2...32, step: 1)
+            } label: {
+                Text("Input Size: \(Int(inputSize))")
+                    .frame(minWidth: 100)
+            }
+        }
+        .padding([.horizontal, .bottom])
     }
 }
 
 #Preview {
-    ControlsView()
+    ControlsView(inputSize: .constant(2))
 }
