@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedItems = Set<GrowthRate>()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            List(GrowthRate.all, id: \.self, selection: $selectedItems) { item in
+                Text(item.id)
+            }
+        } detail: {
+            ChartView(selectedItems: selectedItems)
         }
-        .padding()
+        .onAppear {
+            selectedItems = [GrowthRate.all[0]]
+        }
     }
 }
 

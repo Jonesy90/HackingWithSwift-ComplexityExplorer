@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct DataPoint: Identifiable {
+    let id = UUID()
+    var x: Int
+    var y: Double
+    let rate: String
+}
